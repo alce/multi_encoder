@@ -16,7 +16,7 @@ module MultiEncoder
       end
 
       def root
-        defined?(Rails) ? Rails.root : Pathname.new('/tmp')
+        Pathname.new('/tmp')
       end
 
       def directory
@@ -44,7 +44,7 @@ module MultiEncoder
           body: IO.read(file_path),
           key: filename,
           public: true,
-          content_type: 'img/png'
+          content_type: 'image/png'
         })
       end
 

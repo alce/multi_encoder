@@ -4,10 +4,9 @@ module MultiEncoder
 
   describe QRcodeImage do
 
-    let(:qrcode) { QRcodeImage.new 'thesisist'}
+    let(:qrcode) { QRcodeImage.new 'thesisist' }
 
     context "Filesystem storage" do
-
       after do
         root_dir = qrcode.root.join 'public'
         FileUtils.rm_rf root_dir if root_dir.exist?
@@ -37,6 +36,21 @@ module MultiEncoder
     context "AWS storage" do
       before do
         MultiEncoder::Storage.destination = :aws
+      end
+
+      after do
+        qrcode.delete if qrcode.exists?
+      end
+
+      specify 'exsits? is false' do
+        qrcode.exists?.should be_false
+      end
+
+      it 'saves to as3' do
+        qrcode.write
+        qrcode.exists?.should be_true
+        qrcode.should_not_receive(:write)
+        qrcode.href.should match(/^http/)
       end
     end
   end
