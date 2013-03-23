@@ -11,19 +11,3 @@ module MultiEncoder
     end
   end
 end
-
-
-
-
-#def qrcode(string, options = {})
-
-##dont generate a barcode image again, if already generated
-#unless File.exists?(out)
-##generate the barcode object with all supplied options
-#qrcode = QREncoder.encode(string)
-
-##create the png image
-#png = qrcode.png(options)
-#png.save(out)
-#end
-

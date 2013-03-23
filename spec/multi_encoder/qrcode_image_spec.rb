@@ -38,11 +38,6 @@ module MultiEncoder
       before do
         MultiEncoder::Storage.destination = :aws
       end
-
-      #it 'whatever' do
-      #pending
-      #Array.new.should be_empty
-      #end
     end
   end
 end
