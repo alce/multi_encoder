@@ -9,6 +9,11 @@ module MultiEncoder
       choose_storage
     end
 
+    def href
+      write unless exists?
+      url
+    end
+
     private
     def fingerprint
       Digest::MD5.hexdigest(@contents)[0,9].scan(/.../)

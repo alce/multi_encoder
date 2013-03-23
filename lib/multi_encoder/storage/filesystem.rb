@@ -6,12 +6,12 @@ module MultiEncoder
         file_path
       end
 
+      def root
+        defined?(Rails) ? Rails.root : Pathname.new('/tmp')
+      end
+
       def directory
-        if defined? Rails
-          Rails.root.join 'public', 'system', 'barcodes', *fingerprint
-        else
-          Pathname.new '/tmp'
-        end
+        root.join 'public', 'system', type, *fingerprint
       end
 
       def file_path

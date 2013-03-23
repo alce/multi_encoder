@@ -5,9 +5,8 @@ module MultiEncoder
 
     DEFAULT_ENCODING = Gbarcode::BARCODE_39 | Gbarcode::BARCODE_NO_CHECKSUM
 
-    def href
-      write unless exists?
-      url
+    def type
+      'barcodes'
     end
 
     def write
@@ -25,6 +24,7 @@ module MultiEncoder
       end
     end
 
+    private
     def extract_options(bc)
       bc.width  = @options[:width] if @options[:width]
       bc.height = @options[:height] if @options[:height]

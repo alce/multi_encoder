@@ -3,68 +3,46 @@ require 'spec_helper'
 module MultiEncoder
 
   describe BarcodeImage do
-    describe "Filesystem storage" do
-      let(:barcode) { BarcodeImage.new 'thisisist' }
+
+    let(:barcode) { BarcodeImage.new 'thesisist'}
+
+    context "Filesystem storage" do
 
       after do
-        file = barcode.file_path
-        FileUtils.rm file if file.exist?
+        root_dir = barcode.root.join 'public'
+        FileUtils.rm_rf root_dir if root_dir.exist?
       end
 
-      context "When the image does not exist" do
-        specify 'exsits? is false' do
-          barcode.exists?.should be_false
-        end
-
-        it 'should write the file if href is requested' do
-          barcode.should_receive(:write)
-          barcode.href
-        end
-
-        it 'writes the png to the filesystem' do
-          barcode.exists?.should be_false
-          barcode.write
-          barcode.exists?.should be_true
-        end
+      specify 'exsits? is false' do
+        barcode.exists?.should be_false
       end
 
-      context "When the image exsits" do
-        before(:all) do
-          @barcode = BarcodeImage.new 'guesswhat'
-          @barcode.write
-        end
+      it 'should write the file if href is requested' do
+        barcode.should_receive(:write)
+        barcode.href
+      end
 
-        after(:all) do
-          file = @barcode.file_path
-          FileUtils.rm file if file.exist?
-        end
+      it 'writes the png to the filesystem' do
+        barcode.write
+        barcode.exists?.should be_true
+      end
 
-        specify 'exsits? is true' do
-          @barcode.exists?.should be_true
-        end
-
-        it 'does not write the png' do
-          @barcode.should_not_receive(:write)
-          @barcode.href
-        end
+      it 'does not write the png twice' do
+        barcode.write
+        barcode.should_not_receive(:write)
+        barcode.href
       end
     end
-
-
-
-
-
-
-
 
     context "AWS storage" do
       before do
         MultiEncoder::Storage.destination = :aws
       end
 
-      it 'whatever' do
-        Array.new.should be_empty
-      end
+      #it 'whatever' do
+      #pending
+      #Array.new.should be_empty
+      #end
     end
   end
 end
