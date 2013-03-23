@@ -53,6 +53,10 @@ module MultiEncoder
       end
 
       private
+      def eps_path
+        "/tmp/#{@contents}.eps"
+      end
+
       def filename
         fingerprint.join
       end
