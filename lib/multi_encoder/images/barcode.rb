@@ -22,6 +22,7 @@ module MultiEncoder
         eps.close
         FileUtils.rm eps
       end
+      save if respond_to? :save
     end
 
     private

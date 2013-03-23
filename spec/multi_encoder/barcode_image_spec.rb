@@ -7,7 +7,6 @@ module MultiEncoder
     let(:barcode) { BarcodeImage.new 'thesisist'}
 
     context "Filesystem storage" do
-
       after do
         root_dir = barcode.root.join 'public'
         FileUtils.rm_rf root_dir if root_dir.exist?
@@ -37,6 +36,21 @@ module MultiEncoder
     context "AWS storage" do
       before do
         MultiEncoder::Storage.destination = :aws
+      end
+
+      after do
+        barcode.delete if barcode.exists?
+      end
+
+      specify 'exsits? is false' do
+        barcode.exists?.should be_false
+      end
+
+      it 'saves to as3' do
+        barcode.write
+        barcode.exists?.should be_true
+        barcode.should_not_receive(:write)
+        barcode.href.should match(/^http/)
       end
     end
   end
