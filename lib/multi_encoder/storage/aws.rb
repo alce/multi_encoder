@@ -26,7 +26,7 @@ module MultiEncoder
       def aws_directory
         env = defined?(Rails) ? Rails.env : 'gem-dev'
         @aws_directory ||= connection.directories.create({
-          key: "boletia-#{env}-#{type}",
+          key: "multi-encoder-#{env}-#{type}",
           public: true
         })
       end

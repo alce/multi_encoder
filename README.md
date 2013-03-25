@@ -1,7 +1,6 @@
 # MultiEncoder
 
-QRcode and Barcode printing for Rails apps. Saves png's to the filesystem or
-as3.
+QRcode and Barcode generation for Rails apps. Saves resulting png's to the filesystem or as3.
 
 ## Installation
 
@@ -15,10 +14,6 @@ Build the C library lib <tt>111qrcode.a</tt> available [here] (http://megaui.net
 
 Add this line to your application's Gemfile:
 
-    gem 'multi_encoder', path: 'path/to/repo'
-
-or, if you upload the source to github:
-
     gem 'multi_encoder', github: 'alce/multi_encoder'
 
 And then execute:
@@ -29,15 +24,13 @@ This will compile the gbarcode extension, included within.
 
 ## Usage
 
-The public api did not change:
-
     <%= qrcode 'whasupbro' %>
     <%= barcode 'notmuchmate' height: 20, width: 400, xoff: 10, yoff: 10 %>
 
 ## Configuration
 
 There is nothing to configure if you want the resulting png's saved to
-the filesystem. This is the default. If you want to upload the images ot
+the filesystem. This is the default. If you want to upload the images to
 AS3 you'll need to do 2 things:
 
 First: add this line to <tt>production.rb</tt> or <tt>staging.rb</tt>:
@@ -58,20 +51,12 @@ That's it, you are ready to go.
 The gem will create buckets with the following names, depending on the
 Rails environment:
 
-    boletia-development-barcodes
-    boletia-development-qrcodes
-    boletia-production-barcodes
+    multi-encoder-development-barcodes
+    multi-encoder-development-qrcodes
+    multi-encoder-production-barcodes
 
 and so on.
 
+## Licence
 
-## TODO
-
-The gem is still somewhat unstable. It should work without much trouble
-in your dev machine and current boletia's servers. Maybe all that's
-needed is some path tweaking, depending on how capistrano symlinks your
-stuff.
-
-I still need to do some exploratory testing on Heroku.
-
-That's it, I think.
+MIT
