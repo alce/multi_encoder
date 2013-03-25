@@ -1,8 +1,5 @@
 $: << File.dirname(__FILE__) + '/multi_encoder'
 
-module MultiEncoder
-end
-
 require 'version'
 require 'qrencoder'
 require 'gbarcode'
