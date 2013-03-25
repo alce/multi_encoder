@@ -1,16 +1,21 @@
 # MultiEncoder
 
-QRcode and Barcode generation for Rails apps. Saves resulting png's to the filesystem or as3.
+QRcode and Barcode generation for Rails apps. Saves resulting png's to
+the filesystem or as3. It includes a C extension that wraps the GNU
+Barcode project. For qrcode generation, it uses the [qrcode gem] (http://nycrb.rubyforge.org/qrencoder/), which
+in turn, wraps the <tt>libqrencode</tt> C library.
 
 ## Installation
 
-Build the C library lib <tt>111qrcode.a</tt> available [here] (http://megaui.net/fukuchi/works/qrencode/index.en.html).
+If you intend to generate QRCodes, you'll need to compile the C library <tt>libqrencode</tt> available [here] (http://megaui.net/fukuchi/works/qrencode/index.en.html).
 
     curl http://fukuchi.org/works/qrencode/qrencode-3.2.0.tar.gz | tar xz
     cd qrencode-3.2.0
     ./configure
     make
     sudo make install
+
+You'll also need <tt>ImageMagick</tt> to generate the barcode png's.
 
 Add this line to your application's Gemfile:
 
@@ -25,7 +30,28 @@ This will compile the gbarcode extension, included within.
 ## Usage
 
     <%= qrcode 'whasupbro' %>
-    <%= barcode 'notmuchmate' height: 20, width: 400, xoff: 10, yoff: 10 %>
+    <%= barcode 'notmuchmate' %>
+
+## Options
+
+### Barcodes
+
+The <tt><%= barcode %></tt> heleper generates a barcode in BARCODE_39
+format and accepts the following options:
+
+    width
+    height
+    scaling_factor
+    xoff
+    yoff
+    margin
+   
+Example:
+
+    <%= barcode width: 100, height: 30, xoff: 100 %>
+
+The resulting PNG will be saved on the filesystem (or as3) and rendered
+into the view.
 
 ## Configuration
 
