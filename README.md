@@ -19,7 +19,7 @@ You'll also need <tt>ImageMagick</tt> to generate the barcode png's.
 
 Add this line to your application's Gemfile:
 
-    gem 'multi_encoder', github: 'alce/multi_encoder'
+    gem 'multi_encoder'
 
 And then execute:
 
