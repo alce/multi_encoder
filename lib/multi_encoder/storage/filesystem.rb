@@ -3,7 +3,7 @@ module MultiEncoder
     module FileSystem
 
       def url
-        file_path
+        file_path.to_s.gsub Rails.root.join('public').to_s, ''
       end
 
       def root
