@@ -57,29 +57,24 @@ into the view.
 
 There is nothing to configure if you want the resulting png's saved to
 the filesystem. This is the default. If you want to upload the images to
-AS3 you'll need to do 2 things:
+AS3 you'll need to configure the sorage options, like so:
 
-First: add this line to <tt>production.rb</tt> or <tt>staging.rb</tt>:
+    MultiEncoder::Storage.configure do |c|
+      c.destination = :aws
+      c.aws_bucket_prefix = SOME_PREFIX
+      c.aws_access_key = YOUR_ACCESS_KEY
+      c.aws_secret_access_key =  YOUR_SECRET_ACCESS_KEY
+    end
 
-    MultiEncoder::Storage.destination = :aws
-
-If you want all environments to upload to aws, just add it to
-<tt>application.rb</tt> or an initializer.
-
-Second: export your AWS credentials as environment variables, like so in
-<tt>.bash_profile</tt> or whatever:
-
-    export AWS_ACCESS_KEY="STHSTCHSTHSTHCONT"
-    export AWS_SECRET_ACCESS_KEY="YI7799xtuAAStEG8hmBGidoQ7hJJeHVEg"
+It is also possible to set these values as environment valiables
 
 That's it, you are ready to go.
 
 The gem will create buckets with the following names, depending on the
 Rails environment:
 
-    multi-encoder-development-barcodes
-    multi-encoder-development-qrcodes
-    multi-encoder-production-barcodes
+    [prefix]-development-barcodes
+    [prefix]-development-qrcodes
 
 and so on.
 

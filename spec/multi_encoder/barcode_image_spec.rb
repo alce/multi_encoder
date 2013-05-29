@@ -35,7 +35,12 @@ module MultiEncoder
 
     context "AWS storage" do
       before do
-        MultiEncoder::Storage.destination = :aws
+        MultiEncoder::Storage.configure do |c|
+          c.destination = :aws
+          c.aws_bucket_prefix = ENV['AWS_BUCKET_PREFIX']
+          c.aws_access_key = ENV['AWS_ACCESS_KEY']
+          c.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+        end
       end
 
       after do

@@ -26,7 +26,7 @@ module MultiEncoder
       def aws_directory
         env = defined?(Rails) ? Rails.env : 'gem-dev'
         @aws_directory ||= connection.directories.create({
-          key: "#{ENV['MULTI_ENCODER_BUCKET_PREFIX']}-#{env}-#{type}",
+          key: "#{Storage.aws_bucket_prefix}-#{env}-#{type}",
           public: true
         })
       end
@@ -64,8 +64,8 @@ module MultiEncoder
       def connection
         ::Fog::Storage.new({
           provider: 'AWS',
-          aws_access_key_id: ENV['AWS_ACCESS_KEY'],
-          aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+          aws_access_key_id: Storage.aws_access_key,
+          aws_secret_access_key: Storage.aws_secret_access_key
         })
       end
     end
