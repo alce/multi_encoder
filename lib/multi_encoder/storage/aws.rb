@@ -26,7 +26,7 @@ module MultiEncoder
       def aws_directory
         env = defined?(Rails) ? Rails.env : 'gem-dev'
         @aws_directory ||= connection.directories.create({
-          key: "multi-encoder-#{env}-#{type}",
+          key: "#{ENV['MULTI_ENCODER_BUCKET_PREFIX']}-#{env}-#{type}",
           public: true
         })
       end
