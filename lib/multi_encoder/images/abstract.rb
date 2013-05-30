@@ -28,5 +28,10 @@ module MultiEncoder
                 end
       self.class.send :include, storage
     end
+
+    private
+    def eps_path
+      "/tmp/#{@contents}.eps"
+    end
   end
 end

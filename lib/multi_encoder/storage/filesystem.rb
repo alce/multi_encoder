@@ -24,10 +24,6 @@ module MultiEncoder
         file_path.exist?
       end
 
-      private
-      def eps_path
-        "/tmp/#{@contents}.eps"
-      end
     end
   end
 end
