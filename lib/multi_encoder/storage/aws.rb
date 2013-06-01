@@ -54,7 +54,7 @@ module MultiEncoder
 
       private
       def eps_path
-        "/tmp/#{@contents}-#{Time.now.to_i}.eps"
+        "/tmp/#{@contents}-#{Time.now.to_f.to_s.delete('.')}.eps"
       end
 
       def filename

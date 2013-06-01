@@ -18,7 +18,7 @@ module MultiEncoder
       begin
         Gbarcode.barcode_print barcode, eps, Gbarcode::BARCODE_OUT_EPS
         eps.close
-        system("convert #{eps_path} #{file_path}") unless file_path.exists?
+        system("convert #{eps_path} #{file_path}")
       ensure
         FileUtils.rm eps
       end
