@@ -20,7 +20,7 @@ module MultiEncoder
         eps.close
         system("convert #{eps_path} #{file_path}")
       ensure
-        FileUtils.rm(eps)
+        FileUtils.rm(eps) if File.exists? eps_path
       end
       save if respond_to? :save
     end
