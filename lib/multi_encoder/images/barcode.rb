@@ -3,7 +3,7 @@ require 'tempfile'
 module MultiEncoder
   class BarcodeImage < AbstractImage
 
-    DEFAULT_ENCODING = Gbarcode::BARCODE_39 | Gbarcode::BARCODE_NO_CHECKSUM
+    DEFAULT_ENCODING = Gbarcode::BARCODE_128 | Gbarcode::BARCODE_NO_CHECKSUM
 
     def type
       'barcodes'
