@@ -61,7 +61,8 @@ module MultiEncoder
         ::Fog::Storage.new({
           provider: 'AWS',
           aws_access_key_id: Storage.aws_access_key,
-          aws_secret_access_key: Storage.aws_secret_access_key
+          aws_secret_access_key: Storage.aws_secret_access_key,
+          path_style: true
         })
       end
     end
